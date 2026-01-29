@@ -22,6 +22,11 @@
 ## Pending Issues / Notes
 - **Local Keyboard:** The physical keyboard on the Dell is not correctly mapped (ABNT2/US layout mismatch). Direct local access is difficult; SSH is strictly preferred.
 
+## Completed Tasks
+- [x] Install Docker (Installed on 2026-01-29)
+- [x] Install Portainer (Installed on 2026-01-29)
+
 ## Next Steps
-- Install Docker.
-- Install Portainer (GUI for Docker).
+- Configure Portainer environments.
+- Set up automated backups for the Docker volumes.
+- Explore and deploy initial services (Nginx, Home Assistant, etc.).
