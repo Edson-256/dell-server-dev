@@ -35,7 +35,7 @@ LOG_FILE = LOG_DIR / "agent.log"
 
 # --- Limites ---
 BATCH_SIZE = (10, 15)
-THROTTLE_SECONDS = 60
+THROTTLE_SECONDS = 10
 EXECUTION_WINDOWS = [("02:00", "04:00"), ("10:00", "12:00")]
 
 # --- Logging ---
