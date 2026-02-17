@@ -1,0 +1,25 @@
+# Credenciais
+.env
+
+# Dados e estado
+data/cookies.json
+data/state.json
+data/aulas/
+data/extracurriculares/
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
