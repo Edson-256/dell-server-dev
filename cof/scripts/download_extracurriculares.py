@@ -171,3 +171,70 @@ def save_inventario(content: str) -> None:
     EXTRA_DIR.mkdir(parents=True, exist_ok=True)
     INVENTARIO_FILE.write_text(content, encoding="utf-8")
     print(f"Inventário salvo em: {INVENTARIO_FILE}")
+
+
+def load_downloaded() -> set[str]:
+    """Carrega URLs já baixadas do arquivo de estado."""
+    if DOWNLOADED_STATE_FILE.exists():
+        return set(json.loads(DOWNLOADED_STATE_FILE.read_text()))
+    return set()
+
+
+def save_downloaded(downloaded: set[str]) -> None:
+    """Persiste URLs baixadas."""
+    DOWNLOADED_STATE_FILE.write_text(
+        json.dumps(sorted(downloaded), indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
+
+
+async def download_file(client: httpx.AsyncClient, url: str, dest: Path) -> bool:
+    """Download streaming de um arquivo. Retorna True se bem-sucedido."""
+    if dest.exists():
+        print(f"  [JÁ EXISTE] {dest.name}")
+        return True
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        async with client.stream("GET", url) as resp:
+            resp.raise_for_status()
+            with open(dest, "wb") as f:
+                async for chunk in resp.aiter_bytes(8192):
+                    f.write(chunk)
+        size_mb = dest.stat().st_size / (1024 * 1024)
+        print(f"  [OK] {dest.name} ({size_mb:.1f} MB)")
+        return True
+    except Exception as e:
+        print(f"  [ERRO] {dest.name}: {e}")
+        if dest.exists():
+            dest.unlink()
+        return False
+
+
+async def download_direct_files(courses: list[CourseInfo], token: str, downloaded: set[str]) -> set[str]:
+    """Baixa todos os arquivos com download direto."""
+    headers = {"Authorization": f"JWT {token}"}
+    newly_downloaded = set()
+
+    async with httpx.AsyncClient(headers=headers, follow_redirects=True, timeout=300) as client:
+        for course in courses:
+            direct = [s for s in course.sources if s.file_url and s.file_url not in downloaded]
+            if not direct:
+                continue
+
+            course_dir = EXTRA_DIR / sanitize_dirname(course.title)
+            print(f"\n[{course.title}] — {len(direct)} arquivo(s) para baixar")
+
+            for source in direct:
+                subdir = CATEGORY_TO_DIR.get(source.category_key, "outros")
+                dest_dir = course_dir / subdir
+                fname = re.sub(r'[<>:"/\\|?*]', '_', source.name).strip()
+                if not Path(fname).suffix:
+                    ext = source.file_url.rsplit(".", 1)[-1].split("?")[0]
+                    fname = f"{fname}.{ext}"
+                dest = dest_dir / fname
+
+                ok = await download_file(client, source.file_url, dest)
+                if ok:
+                    newly_downloaded.add(source.file_url)
+
+    return newly_downloaded
