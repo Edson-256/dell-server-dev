@@ -304,3 +304,65 @@ def download_soundcloud_courses(courses: list[CourseInfo], downloaded: set[str])
                 newly_downloaded.add(source.soundcloud_url)
 
     return newly_downloaded
+
+
+async def main_async(dry_run: bool = False, curso_id: int | None = None) -> None:
+    """Fluxo principal: descoberta → inventário → download."""
+    if not TOKEN_FILE.exists():
+        print(f"ERRO: Token não encontrado em {TOKEN_FILE}")
+        print("Execute o agente principal primeiro para autenticar.")
+        sys.exit(1)
+
+    token = json.loads(TOKEN_FILE.read_text())["token"]
+    print("Descobrindo cursos extracurriculares...")
+    courses = await discover_courses(token)
+
+    if curso_id is not None:
+        courses = [c for c in courses if c.id == curso_id]
+        if not courses:
+            print(f"ERRO: Curso com id={curso_id} não encontrado.")
+            sys.exit(1)
+
+    print(f"  {len(courses)} curso(s) encontrado(s)")
+
+    downloaded = load_downloaded()
+
+    inventario = generate_inventario(courses, downloaded)
+    save_inventario(inventario)
+
+    if dry_run:
+        print("\n[DRY RUN] Inventário gerado. Nenhum arquivo baixado.")
+        print(f"Veja: {INVENTARIO_FILE}")
+        return
+
+    print("\nBaixando arquivos diretos (PDFs, áudios)...")
+    new_direct = await download_direct_files(courses, token, downloaded)
+    downloaded.update(new_direct)
+
+    print("\nBaixando playlists SoundCloud...")
+    new_sc = download_soundcloud_courses(courses, downloaded)
+    downloaded.update(new_sc)
+
+    save_downloaded(downloaded)
+
+    inventario = generate_inventario(courses, downloaded)
+    save_inventario(inventario)
+
+    total = len(new_direct) + len(new_sc)
+    print(f"\nConcluído: {total} item(s) baixado(s).")
+    print(f"Inventário atualizado: {INVENTARIO_FILE}")
+
+
+def main() -> None:
+    """Entry point CLI."""
+    import argparse
+    parser = argparse.ArgumentParser(description="Download de cursos extracurriculares")
+    parser.add_argument("--dry-run", action="store_true", help="Só gera inventário, sem baixar")
+    parser.add_argument("--curso", type=int, metavar="ID", help="Baixar apenas o curso com este ID")
+    args = parser.parse_args()
+
+    asyncio.run(main_async(dry_run=args.dry_run, curso_id=args.curso))
+
+
+if __name__ == "__main__":
+    main()
