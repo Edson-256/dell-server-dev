@@ -238,3 +238,69 @@ async def download_direct_files(courses: list[CourseInfo], token: str, downloade
                     newly_downloaded.add(source.file_url)
 
     return newly_downloaded
+
+
+def download_soundcloud_playlist(sc_url: str, dest_dir: Path, course_name: str) -> bool:
+    """Baixa playlist SoundCloud usando yt-dlp. Retorna True se bem-sucedido."""
+    dest_dir.mkdir(parents=True, exist_ok=True)
+
+    existing = list(dest_dir.glob("*.mp3")) + list(dest_dir.glob("*.m4a")) + list(dest_dir.glob("*.opus"))
+    if existing:
+        print(f"  [JÁ EXISTE] {len(existing)} faixa(s) em {dest_dir.name}/")
+        return True
+
+    print(f"  [yt-dlp] Baixando playlist: {sc_url}")
+
+    # Localizar yt-dlp no venv
+    ytdlp_bin = Path(sys.executable).parent / "yt-dlp"
+    if not ytdlp_bin.exists():
+        ytdlp_bin = Path("yt-dlp")
+
+    cmd = [
+        str(ytdlp_bin),
+        sc_url,
+        "--extract-audio",
+        "--audio-format", "mp3",
+        "--audio-quality", "0",
+        "--output", str(dest_dir / "%(playlist_index)02d - %(title)s.%(ext)s"),
+        "--no-playlist-reverse",
+        "--quiet",
+        "--no-warnings",
+    ]
+
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
+        if result.returncode == 0:
+            files = list(dest_dir.glob("*.mp3")) + list(dest_dir.glob("*.m4a"))
+            print(f"  [OK] {len(files)} faixa(s) baixadas em {dest_dir}")
+            return True
+        else:
+            print(f"  [ERRO yt-dlp] {result.stderr[:300]}")
+            return False
+    except subprocess.TimeoutExpired:
+        print(f"  [TIMEOUT] yt-dlp demorou mais de 1h para {course_name}")
+        return False
+    except Exception as e:
+        print(f"  [ERRO] {e}")
+        return False
+
+
+def download_soundcloud_courses(courses: list[CourseInfo], downloaded: set[str]) -> set[str]:
+    """Baixa playlists SoundCloud de todos os cursos."""
+    newly_downloaded = set()
+
+    for course in courses:
+        sc_sources = [s for s in course.sources if s.soundcloud_url and s.soundcloud_url not in downloaded]
+        if not sc_sources:
+            continue
+
+        course_dir = EXTRA_DIR / sanitize_dirname(course.title)
+        print(f"\n[{course.title}] — {len(sc_sources)} playlist(s) SoundCloud")
+
+        for source in sc_sources:
+            dest_dir = course_dir / "audios"
+            ok = download_soundcloud_playlist(source.soundcloud_url, dest_dir, course.title)
+            if ok:
+                newly_downloaded.add(source.soundcloud_url)
+
+    return newly_downloaded
