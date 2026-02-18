@@ -115,3 +115,59 @@ async def discover_courses(token: str) -> list[CourseInfo]:
             courses.append(info)
 
     return sorted(courses, key=lambda c: c.id)
+
+
+def generate_inventario(courses: list[CourseInfo], downloaded: set[str]) -> str:
+    """Gera conteúdo Markdown do inventário com checklist."""
+    lines = [
+        "# Inventário de Cursos Extracurriculares",
+        f"\nAtualizado: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        f"\nTotal de cursos: {len(courses)}\n",
+        "---\n",
+    ]
+
+    for course in courses:
+        dir_name = sanitize_dirname(course.title)
+        course_dir = EXTRA_DIR / dir_name
+
+        direct_files = [s for s in course.sources if s.file_url]
+        sc_links = [s for s in course.sources if s.soundcloud_url]
+        has_anything = direct_files or sc_links
+
+        course_done = course_dir.exists() and any(course_dir.rglob("*"))
+        mark = "x" if course_done else " "
+
+        lines.append(f"## [{mark}] {course.title} (id={course.id}) — {course.count_lessons} aulas\n")
+
+        if not has_anything:
+            lines.append("- ⚠️ Sem conteúdo disponível para download ainda\n")
+        else:
+            for s in sc_links:
+                done = s.soundcloud_url in downloaded
+                m = "x" if done else " "
+                lines.append(f"- [{m}] 🎵 audios/ — {s.name} (SoundCloud playlist)\n")
+                if s.soundcloud_url:
+                    lines.append(f"  - URL: `{s.soundcloud_url}`\n")
+
+            by_cat: dict[str, list[Source]] = {}
+            for s in direct_files:
+                by_cat.setdefault(s.category_key, []).append(s)
+
+            for cat, sources in sorted(by_cat.items()):
+                subdir = CATEGORY_TO_DIR.get(cat, cat)
+                lines.append(f"- {subdir}/ ({len(sources)} arquivo(s)):\n")
+                for s in sources:
+                    done = (s.file_url or "") in downloaded
+                    m = "x" if done else " "
+                    lines.append(f"  - [{m}] {s.name}\n")
+
+        lines.append("\n")
+
+    return "".join(lines)
+
+
+def save_inventario(content: str) -> None:
+    """Salva o INVENTÁRIO.md em data/extracurriculares/."""
+    EXTRA_DIR.mkdir(parents=True, exist_ok=True)
+    INVENTARIO_FILE.write_text(content, encoding="utf-8")
+    print(f"Inventário salvo em: {INVENTARIO_FILE}")
