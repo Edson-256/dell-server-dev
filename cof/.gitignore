@@ -6,6 +6,8 @@ data/cookies.json
 data/state.json
 data/aulas/
 data/extracurriculares/
+!data/extracurriculares/INVENTÁRIO.md
+!data/extracurriculares/SUMÁRIO-DOWNLOAD.md
 
 # Logs
 logs/
@@ -23,3 +25,4 @@ venv/
 # IDE
 .vscode/
 .idea/
+data/extracurriculares/downloaded.json

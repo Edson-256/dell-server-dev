@@ -20,13 +20,13 @@ Se a sessão cair, abra nova janela no diretório `/home/edson/dev/cof` e diga:
 
 ## Tasks (marcar conforme completadas)
 
-- [ ] **Task 1:** Instalar yt-dlp + atualizar pyproject.toml
-- [ ] **Task 2:** Funções utilitárias + descoberta via API (estrutura base do script)
-- [ ] **Task 3:** Geração do INVENTÁRIO.md
-- [ ] **Task 4:** Download de arquivos diretos via httpx
-- [ ] **Task 5:** Download de playlists SoundCloud via yt-dlp
-- [ ] **Task 6:** CLI principal (`--dry-run`, `--curso ID`) + integração completa
-- [ ] **Task 7:** Execução completa + commit final
+- [x] **Task 1:** Instalar yt-dlp + atualizar pyproject.toml
+- [x] **Task 2:** Funções utilitárias + descoberta via API (estrutura base do script)
+- [x] **Task 3:** Geração do INVENTÁRIO.md
+- [x] **Task 4:** Download de arquivos diretos via httpx
+- [x] **Task 5:** Download de playlists SoundCloud via yt-dlp
+- [x] **Task 6:** CLI principal (`--dry-run`, `--curso ID`) + integração completa
+- [ ] **Task 7:** Execução completa + commit final ← EM ANDAMENTO
 
 ## Arquivos criados até agora
 
