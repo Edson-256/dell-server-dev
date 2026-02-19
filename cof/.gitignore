@@ -4,7 +4,10 @@
 # Dados e estado
 data/cookies.json
 data/state.json
+data/token.json
 data/aulas/
+data/COF Original/
+data/COF Remasterizado/
 data/extracurriculares/
 !data/extracurriculares/INVENTÁRIO.md
 !data/extracurriculares/SUMÁRIO-DOWNLOAD.md
