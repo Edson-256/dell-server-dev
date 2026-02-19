@@ -1,12 +1,12 @@
 # Inventário de Cursos Extracurriculares
-Atualizado: 2026-02-18 17:13
+Atualizado: 2026-02-18 21:30
 Total de cursos: 27
 ---
 ## [ ] Metafísica: A Estrutura do Ser (id=2) — 6 aulas
 - ⚠️ Sem conteúdo disponível para download ainda
 
 ## [x] Conceitos fundamentais de psicologia (id=3) — 6 aulas
-- [ ] 🎵 audios/ — Conceitos Fundamentais de Psicologia (SoundCloud playlist)
+- [x] 🎵 audios/ — Conceitos Fundamentais de Psicologia (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126618096?secret_token=s-7Egfq`
 - apostilas/ (22 arquivo(s)):
   - [x] A Criminalidade em Ascensão uma Visão Civilizacional.pdf
@@ -33,7 +33,7 @@ Total de cursos: 27
   - [x] Duvidar da Dúvida e Criticar o Criticismo PRELIMINARES DE UM RETORNO À METAFÍSICA DOGMÁTICA.pdf
 
 ## [x] A formação da personalidade (id=4) — 6 aulas
-- [ ] 🎵 audios/ — A Formação da Personalidade (SoundCloud playlist)
+- [x] 🎵 audios/ — A Formação da Personalidade (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126052161?secret_token=s-8Dnhs`
 
 ## [x] A crise da inteligência segundo Roger Scruton (id=5) — 6 aulas
@@ -43,21 +43,21 @@ Total de cursos: 27
   - URL: `https://api.soundcloud.com/playlists/126053984?secret_token=s-zig4E`
 
 ## [x] Sociologia da filosofia (id=6) — 7 aulas
-- [ ] 🎵 audios/ — Sociologia da Filosofia (SoundCloud playlist)
+- [x] 🎵 audios/ — Sociologia da Filosofia (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126287624?secret_token=s-6jDBY`
 
 ## [x] Simbolismo e ordem cósmica: ontem e hoje (id=7) — 5 aulas
-- [ ] 🎵 audios/ — Simbolismo e Ordem Cósmica (SoundCloud playlist)
+- [x] 🎵 audios/ — Simbolismo e Ordem Cósmica (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/587810733?secret_token=s-XIJNA`
 - apostilas/ (1 arquivo(s)):
   - [x] A Perspectiva Rotatória
 
 ## [x] Ser e Poder: Princípios e Métodos da Ciência Política (id=8) — 5 aulas
-- [ ] 🎵 audios/ — Ser e Poder (SoundCloud playlist)
+- [x] 🎵 audios/ — Ser e Poder (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/723940875?secret_token=s-46WYM`
 
 ## [x] Princípios e métodos da auto-educação (id=9) — 6 aulas
-- [ ] 🎵 audios/ — Princípios e métodos da auto-educação (SoundCloud playlist)
+- [x] 🎵 audios/ — Princípios e métodos da auto-educação (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126616686?secret_token=s-Qrzz0`
 
 ## [x] Política e Cultura no Brasil: história e perspectivas (id=10) — 6 aulas
@@ -65,7 +65,7 @@ Total de cursos: 27
   - URL: `https://api.soundcloud.com/playlists/215601166?secret_token=s-ekXDh`
 
 ## [x] Mário Ferreira dos Santos: Guia para o estudo de sua obra (id=11) — 5 aulas
-- [ ] 🎵 audios/ — Mario Ferreira dos Santos (SoundCloud playlist)
+- [x] 🎵 audios/ — Mario Ferreira dos Santos (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/385904423?secret_token=s-Qhupi`
 
 ## [x] Introdução ao método filosófico (id=12) — 6 aulas
@@ -73,39 +73,39 @@ Total de cursos: 27
   - URL: `https://api.soundcloud.com/playlists/126053706?secret_token=s-7GoBz`
 
 ## [x] Introdução à filosofia de Louis Lavelle (id=13) — 6 aulas
-- [ ] 🎵 audios/ — Introdução à filosofia de Louis Lavelle (SoundCloud playlist)
+- [x] 🎵 audios/ — Introdução à filosofia de Louis Lavelle (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126051563?secret_token=s-P6A7Z`
 
 ## [x] Introdução à filosofia de Eric Voegelin (id=14) — 6 aulas
-- [ ] 🎵 audios/ — Introdução à filosofia de Eric Voegelin (SoundCloud playlist)
+- [x] 🎵 audios/ — Introdução à filosofia de Eric Voegelin (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126599348?secret_token=s-RHtAm`
 
 ## [x] II Encontro de Escritores Brasileiros na Virginia (id=15) — 4 aulas
-- [ ] 🎵 audios/ — II Encontro de escritores brasileiros na Virginia (SoundCloud playlist)
+- [x] 🎵 audios/ — II Encontro de escritores brasileiros na Virginia (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/169373142?secret_token=s-4c6o8`
 
 ## [x] Guerra Cultural: história e estratégias (id=16) — 4 aulas
-- [ ] 🎵 audios/ — Guerra Cultural (SoundCloud playlist)
+- [x] 🎵 audios/ — Guerra Cultural (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/261106190?secret_token=s-Wc7Ld`
 
 ## [x] Filosofia da ciência (id=17) — 6 aulas
-- [ ] 🎵 audios/ — Filosofia da ciência (SoundCloud playlist)
+- [x] 🎵 audios/ — Filosofia da ciência (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126051376?secret_token=s-HF69o`
 
 ## [x] Esoterismo na História e hoje em dia (id=18) — 5 aulas
-- [ ] 🎵 audios/ — Esoterismo (SoundCloud playlist)
+- [x] 🎵 audios/ — Esoterismo (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/300206408?secret_token=s-izI9T`
 
 ## [x] Consciência de imortalidade (id=19) — 6 aulas
-- [ ] 🎵 audios/ — Consciência de imortalidade (SoundCloud playlist)
-  - URL: `//api.soundcloud.com/playlists/126614431?secret_token=s-hBraN`
+- [x] 🎵 audios/ — Consciência de imortalidade (SoundCloud playlist)
+  - URL: `https://api.soundcloud.com/playlists/126614431?secret_token=s-hBraN`
 
 ## [x] Conhecimento e moralidade (id=20) — 6 aulas
-- [ ] 🎵 audios/ — Conhecimento e moralidade (SoundCloud playlist)
+- [x] 🎵 audios/ — Conhecimento e moralidade (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126615635?secret_token=s-aqmak`
 
 ## [x] Como tornar-se um leitor inteligente (id=21) — 6 aulas
-- [ ] 🎵 audios/ — Como tornar-se um leitor inteligente (SoundCloud playlist)
+- [x] 🎵 audios/ — Como tornar-se um leitor inteligente (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126054494?secret_token=s-ZcHb4`
 
 ## [x] A Guerra Contra a Inteligência: o que estão fazendo para imbecilizar você (id=22) — 5 aulas
@@ -113,14 +113,14 @@ Total de cursos: 27
   - URL: `https://api.soundcloud.com/playlists/467075442?secret_token=s-uxP3v`
 
 ## [x] As raízes da modernidade (id=23) — 6 aulas
-- [ ] 🎵 audios/ — Raízes da Modernidade (SoundCloud playlist)
+- [x] 🎵 audios/ — Raízes da Modernidade (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/126619239?secret_token=s-9wYWF`
 
 ## [ ] Teoria Geral do Estado (id=24) — 11 aulas
 - ⚠️ Sem conteúdo disponível para download ainda
 
 ## [x] Ciência Política: Saber, Prever e Poder (id=25) — 5 aulas
-- [ ] 🎵 audios/ — Ciência Política: Saber, Prever e Poder (SoundCloud playlist)
+- [x] 🎵 audios/ — Ciência Política: Saber, Prever e Poder (SoundCloud playlist)
   - URL: `https://api.soundcloud.com/playlists/1312632004?secret_token=s-UKn78H8GZ71`
 - apostilas/ (3 arquivo(s)):
   - [x] Problemas de método nas Ciências Humanas

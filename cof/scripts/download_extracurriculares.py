@@ -56,7 +56,11 @@ def extract_soundcloud_url(embed_link: str) -> str | None:
     url_list = params.get("url", [])
     if not url_list:
         return None
-    return unquote(url_list[0])
+    url = unquote(url_list[0])
+    # Corrigir URLs protocol-relative (//api.soundcloud.com/...)
+    if url.startswith("//"):
+        url = "https:" + url
+    return url
 
 
 def sanitize_dirname(name: str) -> str:
@@ -256,6 +260,11 @@ def download_soundcloud_playlist(sc_url: str, dest_dir: Path, course_name: str) 
     if not ytdlp_bin.exists():
         ytdlp_bin = Path("yt-dlp")
 
+    # Localizar ffmpeg (necessário para conversão de áudio)
+    import shutil
+    ffmpeg_path = shutil.which("ffmpeg") or "/usr/bin/ffmpeg"
+    ffmpeg_dir = str(Path(ffmpeg_path).parent) if ffmpeg_path else None
+
     cmd = [
         str(ytdlp_bin),
         sc_url,
@@ -267,6 +276,8 @@ def download_soundcloud_playlist(sc_url: str, dest_dir: Path, course_name: str) 
         "--quiet",
         "--no-warnings",
     ]
+    if ffmpeg_dir:
+        cmd += ["--ffmpeg-location", ffmpeg_dir]
 
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
